@@ -1,11 +1,7 @@
 <?php
 
-use App\Core\Database;
-
+/* carregamento das classes gerenciadas pelo composer */
 require_once __DIR__ . "/vendor/autoload.php";
 
-/* verifica conexão com o banco de dados */
-Database::verifyConnection();
-
-/* include do gerenciador de rotas */
+/* include do gerenciador de rotas web */
 include __DIR__ . "/router/web.php";

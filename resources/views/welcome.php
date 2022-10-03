@@ -10,7 +10,7 @@
 
 <body>
 
-    <h1>View da página HOME!!!</h1>
+    <h1>View da página WELCOME!!!</h1>
 
     <p><?= $date; ?></p>
 
