@@ -3,14 +3,14 @@
 use App\Core\Database;
 use App\Core\Enviroments;
 
+/* carrega o arquivo com as variáveis de ambiente */
+Enviroments::load(dirname(__FILE__, 2));
+
 /* definição da ULR PADRÃO do projeto */
 define('ROOT', getLocal());
 
 /* padrão para as páginas de exibição */
 define('APP_LANGUAGE', "pt-br");
-
-/* carrega o arquivo com as variáveis de ambiente */
-Enviroments::load(dirname(__FILE__, 2));
 
 /* verifica se existe conexão com o banco de dados */
 Database::verifyConnection();
@@ -22,13 +22,16 @@ Database::verifyConnection();
  */
 function getLocal()
 {
-    if ($_SERVER['SERVER_NAME'] == "localhost") {
+    if (trim(getenv('APP_ENV')) == "local") {
         /* url para desenvolvimento */
-        return "http://localhost/plates";
+        $url = "http://localhost/plates";
     } else {
         /* url para produção */
-        return "https://dominio.com.br";
+        $url = "https://dominio.com.br";
     }
+
+    /* retorna uma URL para o projeto */
+    return $url;
 }
 
 /**

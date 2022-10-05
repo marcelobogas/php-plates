@@ -43,7 +43,7 @@ class Database
             die("Erro: " . $e->getMessage());
         }
     }
-    
+
     /**
      * Método responável por verificar se existe conexão com o banco de dados
      *
@@ -52,7 +52,7 @@ class Database
     public static function verifyConnection()
     {
         $conn = self::getConnection();
-        
+
         /* retorna a menagem de erro */
         if (isset($conn->connect_error)) {
             die("Connection failed: " . $conn->connect_error);

@@ -3,9 +3,9 @@
 namespace App\Controllers;
 
 class ErrorController extends Controller
-{    
+{
     /**
-     * Método responsável por retornar a página correspondente 
+     * Método responsável por retornar a página correspondente
      * ao erro de requisição pela url
      *
      * @param array $data

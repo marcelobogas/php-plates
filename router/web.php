@@ -2,7 +2,7 @@
 
 use CoffeeCode\Router\Router;
 
-$router = new Router(ROOT);
+$router = new Router( projectUrl: ROOT );
 
 /* mapeamento do path onde estão os Controllers */
 $router->namespace("app\Controllers");
@@ -37,14 +37,21 @@ $router->get("/dashboard", "Admin\DashboardController:index");
 $router->group( group: "pages" );
 $router->get("/dashboard", "Pages\DashboardController:index");
 
-/* rota para disparo de erros na requisição por URL */
-$router->group( group: "ooops" );
-$router->get("/{errcode}", "ErrorController:error");
+/**
+ * Group Error
+ * This monitors all Router errors. Are they: 400 Bad Request, 
+ * 404 Not Found, 405 Method Not Allowed and 501 Not Implemented
+ */
+$router->group( group: "error" );
+//$router->get("/{errcode}", "ErrorController:error");
+$router->get("/{errcode}", function($data) {
+    echo "<h1><center>Erro {$data["errcode"]}</center></h1>";
+});
 
 /* executa a ação de uma rota */
 $router->dispatch();
 
 /* redireciona a requisição URL com erro para a rota responsável realizar o tratamento */
 if ($router->error()) {
-    $router->redirect( route: "/ooops/{$router->error()}" );
+    $router->redirect( route: "/error/{$router->error()}" );
 }
